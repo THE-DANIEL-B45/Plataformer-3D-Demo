@@ -25,6 +25,20 @@ public class Player : MonoBehaviour //, IDamageable
     [Header("Flash")]
     public List<FlashColor> flashColors;
 
+    public HealthBase healthBase;
+
+    private void OnValidate()
+    {
+        if(healthBase == null) healthBase = GetComponent<HealthBase>();
+    }
+
+    private void Awake()
+    {
+        OnValidate();
+
+        healthBase.OnDamage += Damage;
+    }
+
     private void Update()
     {
         transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
@@ -62,7 +76,7 @@ public class Player : MonoBehaviour //, IDamageable
 
     #region Life
 
-    public void Damage(float damage)
+    public void Damage(HealthBase h)
     {
         foreach(var f in flashColors)
         {

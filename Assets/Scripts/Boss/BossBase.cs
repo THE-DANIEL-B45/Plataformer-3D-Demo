@@ -36,7 +36,7 @@ namespace Boss
 
         private void OnValidate()
         {
-            if (healthBase != null) healthBase = GetComponent<HealthBase>();
+            if (healthBase == null) healthBase = GetComponent<HealthBase>();
         }
 
         private void Awake()
