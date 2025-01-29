@@ -34,9 +34,17 @@ namespace Boss
 
         public StateMachine<BossAction> stateMachine;
 
+        private void OnValidate()
+        {
+            if (healthBase != null) healthBase = GetComponent<HealthBase>();
+        }
+
         private void Awake()
         {
             Init();
+
+            OnValidate();
+
             healthBase.OnKill += OnBossKill;
         }
 
@@ -49,6 +57,8 @@ namespace Boss
             stateMachine.RegisterStates(BossAction.WALK, new BossStateWalk());
             stateMachine.RegisterStates(BossAction.ATTACK, new BossStateAttack());
             stateMachine.RegisterStates(BossAction.DEATH, new BossStateDeath());
+
+            SwitchState(BossAction.INIT);
         }
 
         private void OnBossKill(HealthBase h)
@@ -104,7 +114,7 @@ namespace Boss
         public void StartInitAnimation()
         {
             transform.DOScale(0, startAnimationduration).SetEase(startAnimationEase).From();
-            stateMachine.SwitchState(BossAction.WALK);
+            SwitchState(BossAction.WALK);
         }
 
         #endregion
