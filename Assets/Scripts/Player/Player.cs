@@ -124,6 +124,7 @@ public class Player : MonoBehaviour //, IDamageable
             f.Flash();
         }
         EffectsManager.Instance.ChangeVignette();
+        ShakeCamera.Instance.Shake();
     }
 
     public void Damage(float damage, Vector3 dir)
