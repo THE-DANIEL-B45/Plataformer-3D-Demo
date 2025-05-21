@@ -7,7 +7,7 @@ namespace Cloth
 {
     public class ClothChanger : MonoBehaviour
     {
-        public SkinnedMeshRenderer mesh;
+        public SkinnedMeshRenderer[] meshs;
 
         public Texture2D texture;
 
@@ -17,22 +17,24 @@ namespace Cloth
 
         private void Awake()
         {
-            defaultTexture = (Texture2D) mesh.sharedMaterials[0].GetTexture(shaderIdName);
-        }
-
-        private void ChangeTexture()
-        {
-            mesh.materials[0].SetTexture(shaderIdName, texture);
+            defaultTexture = (Texture2D)meshs[0].sharedMaterials[0].GetTexture(shaderIdName);
         }
 
         public void ChangeTexture(ClothSetup setup)
         {
-            mesh.sharedMaterials[0].SetTexture(shaderIdName, setup.texture);
+            foreach (var mesh in meshs)
+            {
+                mesh.materials[0].SetTexture(shaderIdName, setup.texture);
+            }
         }
 
         public void ResetTexture()
         {
-            mesh.sharedMaterials[0].SetTexture(shaderIdName, defaultTexture);
+            foreach(var mesh in meshs)
+            {
+                mesh.materials[0].SetTexture (shaderIdName, defaultTexture);
+            }
+
         }
     }
 
