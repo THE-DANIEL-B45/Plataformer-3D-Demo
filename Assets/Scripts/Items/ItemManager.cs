@@ -32,6 +32,13 @@ public class ItemManager : Singleton<ItemManager>
     private void Start()
     {
         Reset();
+        LoadItemsFromSave();
+    }
+
+    public void LoadItemsFromSave()
+    {
+        AddByType(ItemType.COIN, SaveManager.Instance.Setup.coins);
+        AddByType(ItemType.LIFE_PACK, SaveManager.Instance.Setup.lifePacks);
     }
 
     private void Reset()

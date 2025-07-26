@@ -6,7 +6,7 @@ namespace Cloth
 {
     public class ClothItemSpeed : ClothItemBase
     {
-        public float targetSpeed = 2;
+        public float targetSpeed = 50;
 
         public override void Collect()
         {

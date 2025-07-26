@@ -15,6 +15,8 @@ namespace Cloth
 
         private Texture2D defaultTexture;
 
+        public ClothSetup currentClothSetup;
+
         private void Awake()
         {
             defaultTexture = (Texture2D)meshs[0].sharedMaterials[0].GetTexture(shaderIdName);
@@ -22,6 +24,8 @@ namespace Cloth
 
         public void ChangeTexture(ClothSetup setup)
         {
+            currentClothSetup = setup;
+
             foreach (var mesh in meshs)
             {
                 mesh.materials[0].SetTexture(shaderIdName, setup.texture);
@@ -30,7 +34,9 @@ namespace Cloth
 
         public void ResetTexture()
         {
-            foreach(var mesh in meshs)
+            currentClothSetup = new ClothSetup { clothType = ClothType.Base };
+
+            foreach (var mesh in meshs)
             {
                 mesh.materials[0].SetTexture (shaderIdName, defaultTexture);
             }

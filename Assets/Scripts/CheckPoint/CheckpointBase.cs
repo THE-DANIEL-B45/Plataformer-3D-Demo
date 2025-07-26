@@ -43,6 +43,8 @@ public class CheckpointBase : MonoBehaviour
 
         CheckpointManager.Instance.SaveCheckPoint(key);
 
+        SaveManager.Instance.SaveItems();
+
         checkpointActivated = true;
     }
 }

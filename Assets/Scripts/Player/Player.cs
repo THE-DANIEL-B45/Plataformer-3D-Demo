@@ -37,7 +37,7 @@ public class Player : Singleton<Player> //, IDamageable
     public HealthBase healthBase;
 
     [Space]
-    [SerializeField]private ClothChanger clothChanger;
+    public ClothChanger clothChanger;
 
     private void OnValidate()
     {
@@ -51,6 +51,39 @@ public class Player : Singleton<Player> //, IDamageable
 
         healthBase.OnDamage += Damage;
         healthBase.OnKill += OnKill;
+    }
+
+    private void Start()
+    {
+        LoadPlayerInfo();
+    }
+
+    private void LoadPlayerInfo()
+    {
+        SaveSetup saveSetup = SaveManager.Instance.Setup;
+
+        healthBase._currentLife = saveSetup.health;
+        healthBase.UpdateUI();
+
+        if(saveSetup.clothSetup.clothType != ClothType.Base)
+        {
+            StartCoroutine(ChangeTextureCoroutine(saveSetup.clothSetup, 10));
+
+            switch(saveSetup.clothSetup.clothType)
+            {
+                case ClothType.SPEED:
+
+                    ChangeSpeed(50, 10);
+
+                    break;
+
+                case ClothType.Strong:
+
+                    healthBase.ChangeDamageMultiply(0.5f, 10);
+
+                    break;
+            }
+        }
     }
 
     private void Update()

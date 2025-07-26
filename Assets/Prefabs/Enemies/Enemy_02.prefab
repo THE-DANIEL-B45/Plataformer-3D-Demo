@@ -52,13 +52,28 @@ MonoBehaviour:
   myCollider: {fileID: 4864662176481339619}
   flashColor: {fileID: 6853552434742194189}
   myParticleSystem: {fileID: 5958574426166215866}
-  startLife: 25
+  startLife: 15
   lookAtPlayer: 0
   _currentLife: 0
   _animationBase: {fileID: 9083617774569301673}
   startAnimationDuration: 0.2
   startAnimationEase: 27
   startWithBornAnimation: 1
+  OnKillEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!65 &4864662176481339619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78,8 +93,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5101047, y: 3.8981493, z: 3.1088867}
-  m_Center: {x: 0.005934477, y: 1.4490744, z: -0.039161682}
+  m_Size: {x: 6.895542, y: 8.154955, z: 5.405668}
+  m_Center: {x: 0.0059344782, y: 3.5774782, z: -0.039161682}
 --- !u!114 &9083617774569301673
 MonoBehaviour:
   m_ObjectHideFlags: 0

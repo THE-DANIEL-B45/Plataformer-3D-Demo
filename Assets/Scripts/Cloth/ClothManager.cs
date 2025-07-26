@@ -18,7 +18,18 @@ namespace Cloth
 
         public ClothSetup GetSetupByType(ClothType cloth)
         {
-            return clothSetups.Find(i => i.clothType == cloth);
+            ClothSetup target = new ClothSetup();
+
+            foreach(ClothSetup c in clothSetups)
+            {
+                if(c.clothType == cloth)
+                {
+                    target = c;
+                    break;
+                }
+            }
+
+            return target;
         }
     }
 

@@ -10,7 +10,7 @@ public class HealthBase : MonoBehaviour, IDamageable
 {
     public float startLife = 10f;
     public bool destroyOnKill = false;
-    [SerializeField] private float _currentLife;
+    public float _currentLife;
 
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
@@ -67,7 +67,7 @@ public class HealthBase : MonoBehaviour, IDamageable
         Damage(damage);
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         if(uIGunUpdater != null)
         {
