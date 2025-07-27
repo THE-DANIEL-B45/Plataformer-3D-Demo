@@ -11,6 +11,8 @@ public class ProjectileBase : MonoBehaviour
 
     public List<string> tagsToHit;
 
+    public SFXType hitAudio = SFXType.Type_04;
+
     private void Awake()
     {
         Destroy(gameObject, timeToDestroy);
@@ -31,6 +33,8 @@ public class ProjectileBase : MonoBehaviour
 
                 if (damageable != null)
                 {
+                    SFXPool.Instance.Play(hitAudio);
+
                     Vector3 dir = collision.transform.position - transform.position;
 
                     dir = -dir.normalized;

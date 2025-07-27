@@ -55,6 +55,7 @@ MonoBehaviour:
   graphicItem: {fileID: 6059315593852407254}
   myCollider: {fileID: 1443119448309293460}
   audioSource: {fileID: 0}
+  sfxType: 1
 --- !u!135 &1443119448309293460
 SphereCollider:
   m_ObjectHideFlags: 0

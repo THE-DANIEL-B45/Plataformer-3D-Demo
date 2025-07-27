@@ -39,6 +39,8 @@ public class Player : Singleton<Player> //, IDamageable
     [Space]
     public ClothChanger clothChanger;
 
+    public SFXType jumpAudio = SFXType.Type_03;
+
     private void OnValidate()
     {
         if(healthBase == null) healthBase = GetComponent<HealthBase>();
@@ -109,6 +111,7 @@ public class Player : Singleton<Player> //, IDamageable
                 if(!_jumping)
                 {
                     _jumping = true;
+                    SFXPool.Instance.Play(jumpAudio);
                     animator.SetTrigger("Jump");
                 }
             }

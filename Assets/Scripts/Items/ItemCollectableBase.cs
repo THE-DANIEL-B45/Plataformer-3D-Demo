@@ -18,6 +18,7 @@ namespace Itens
 
         [Header("Sounds")]
         public AudioSource audioSource;
+        public SFXType sfxType;
 
         private void Awake()
         {
@@ -33,8 +34,14 @@ namespace Itens
             }
         }
 
+        private void PlaySFX()
+        {
+            SFXPool.Instance.Play(sfxType);
+        }
+
         protected virtual void Collect()
         {
+            PlaySFX();
             if(myCollider != null) myCollider.enabled = false;
             if (graphicItem != null) graphicItem.SetActive(false);
             Invoke(nameof(HideObject), timeToHide);

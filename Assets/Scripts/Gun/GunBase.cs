@@ -10,6 +10,8 @@ public class GunBase : MonoBehaviour
     public float timeBetweenShoot = 0.3f;
     public float speed = 50f;
 
+    public SFXType shootAudio = SFXType.Type_02;
+
     private Coroutine _currentCoroutine;
 
     protected virtual IEnumerator ShootCoroutine()
@@ -24,6 +26,7 @@ public class GunBase : MonoBehaviour
     public virtual void Shoot()
     {
         var projectile = Instantiate(prefabProjectile);
+        SFXPool.Instance.Play(shootAudio);
         projectile.transform.position = positionToShoot.position;
         projectile.transform.rotation = positionToShoot.rotation;
         projectile.speed = speed;
